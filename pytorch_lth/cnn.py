@@ -4,7 +4,7 @@ import torch.nn as nn
 from torch.autograd import Variable
 import torch.utils.data as Data
 import torchvision      # 数据库模块
-from pytorch_lth.visualize import make_dot
+from pytorch_lth.visualize import make_dot # 画网络结构图模块
 
 torch.manual_seed(1)    # reproducible
 
@@ -64,9 +64,9 @@ cnn = CNN()
 print(cnn)  # net architecture
 
 model=cnn
-y = model(test_x)
-g = make_dot(y)
-g.view()
+y = model(test_x) #网络结构初始化
+g = make_dot(y) # 画网络结构图
+g.view() # show出网络结构图（格式为pdf）
 
 optimizer = torch.optim.Adam(cnn.parameters(), lr=LR)   # optimize all cnn parameters
 loss_func = nn.CrossEntropyLoss()   # the target label is not one-hotted
@@ -83,10 +83,12 @@ for epoch in range(EPOCH):
         loss.backward()                 # backpropagation, compute gradients
         optimizer.step()                # apply gradients
 
-
+# 结果测试部分
 test_output = cnn(test_x[:10])
-pred_y = torch.max(test_output, 1)[1].data.numpy().squeeze()
+pred_y = torch.max(test_output, 1)[1].data.numpy().squeeze() #与softmax对应，输出值tensor中值最大的label，这个label即为判断
 print(pred_y, 'prediction number')
 print(test_y[:10].numpy(), 'real number')
 
+
+# 保存模型
 torch.save(cnn.state_dict(),"mnist_cnn_param.pkl")

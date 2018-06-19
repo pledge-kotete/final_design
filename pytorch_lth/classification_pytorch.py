@@ -57,6 +57,7 @@ for t in range(100):
     optimizer.step()        # 将参数更新值施加到 net 的 parameters 上
     if t % 2 == 0:
         plt.cla()
+
         # 过了一道 softmax 的激励函数后的最大概率才是预测值
         prediction = torch.max(F.softmax(out), 1)[1]
         pred_y = prediction.data.numpy().squeeze()

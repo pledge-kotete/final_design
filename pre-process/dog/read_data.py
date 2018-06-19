@@ -20,6 +20,7 @@ for line in lines:
 #dogs part
 for filepath in dog_filename:
     dataFile=filepath
+
     #数据读取部分（此部分可直接使用），最重要的为data与label
     data_0=scio.loadmat(dataFile) #读入原始dict文件
     keys=dataFile.split(".")[0].split("_")
@@ -44,6 +45,7 @@ for filepath in dog_filename:
         label = "0"
     data=np.array(data)
     data_T=data.T
+
     # 数据预处理
     ica_out_8= ica_process.ica_pre(data_T, 8) # 将所有原始信号经过ICA转变成8个独立源信号
     ica_out_12= ica_process.ica_pre(data_T, 12) # 将所有原始信号经过ICA转变成12个独立源信号

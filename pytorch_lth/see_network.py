@@ -18,7 +18,7 @@ class Net(torch.nn.Module):     # 继承 torch 的 Module
         # 正向传播输入值, 神经网络分析出输出值
         x = F.relu(self.hidden_1(x))      # 激励函数(隐藏层的线性值)
         x = F.relu(self.hidden_2(x))
-        x = self.dropout(x)
+        x = self.dropout(x)               # dropout 层
         x = F.relu(self.hidden_3(x))
         x = self.dropout(x)
         x = F.log_softmax(self.hidden_4(x),dim=1)                 # 输出值, 但是这个不是预测值, 预测值还需要再另外计算

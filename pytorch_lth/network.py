@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 
 torch.manual_seed(1)    # reproducible
 
-LR = 0.01
-BATCH_SIZE = 32
-EPOCH = 12
+LR = 0.01 # 学习率
+BATCH_SIZE = 32 # 每次训练输入图片张数，所有图片均输入一次后，一个训练轮次结束
+EPOCH = 12 # 训练轮次
 
 # fake dataset
 x = torch.unsqueeze(torch.linspace(-1, 1, 1000), dim=1)
@@ -41,6 +41,7 @@ net_RMSprop     = Net()
 net_Adam        = Net()
 nets = [net_SGD, net_Momentum, net_RMSprop, net_Adam]
 
+# 初始化优化策略
 opt_SGD         = torch.optim.SGD(net_SGD.parameters(), lr=LR)
 opt_Momentum    = torch.optim.SGD(net_Momentum.parameters(), lr=LR, momentum=0.8)
 opt_RMSprop     = torch.optim.RMSprop(net_RMSprop.parameters(), lr=LR, alpha=0.9)
